@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Centro Médico IDW | Atención integral</title>
+  <meta name="description" content="Centro médico integral: turnos, especialidades, profesionales, guardia y obras sociales. Córdoba, Argentina." />
+  <meta name="author" content="Centro Médico IDW" />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+    :root{
+      --brand:#2e7d32; --brand-2:#1b5e20;
+      --gray-dark:#3d3d3d; --gray-mid:#6c757d; --gray-light:#f8f9fa;
+      --bg:#ffffff; --text:#212529; --muted:#495057; --card:#ffffff;
+      --shadow:0 10px 25px rgba(0,0,0,.08); --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;font-family:'Montserrat',sans-serif;color:var(--text);background:var(--bg)}
+    a{text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1100px;margin:0 auto;width:100%}
+    header{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,var(--gray-light),var(--brand));border-bottom:1px solid var(--gray-mid);transition:box-shadow .2s}
+    header.is-scrolled{box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 20px}
+    .brand img{height:100px;width:auto}
+    .nav ul{display:flex;gap:8px;list-style:none;margin:0;padding:0;align-items:center}
+    .nav a, .nav button.navlink{padding:10px 14px;border-radius:22px;font-weight:600;color:#fff;transition:.2s;background:transparent;border:0;cursor:pointer}
+    .nav a:hover, .nav button.navlink:hover{background:rgba(255,255,255,0.2);color:#fff}
+    .nav .btn-turnos{background:#fff;color:var(--brand-2);border-radius:30px;padding:10px 20px;box-shadow:var(--shadow);font-weight:700}
+    .nav .btn-turnos:hover{background:var(--brand-2);color:#fff}
+    .dropdown{position:relative}
+    .caret{margin-left:6px;font-size:10px}
+    .dropdown-menu{position:absolute;top:44px;left:0;min-width:220px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 12px 24px rgba(0,0,0,.08);padding:8px;display:none}
+    .dropdown-menu a{display:block;color:var(--gray-dark);padding:10px 12px;border-radius:10px}
+    .dropdown-menu a:hover{background:#f1f5f9}
+    .dropdown:focus-within .dropdown-menu, .dropdown:hover .dropdown-menu{display:block}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center;padding:24px 20px;background:linear-gradient(180deg,var(--brand),#ffffff)}
+    .badge{display:inline-block;background:var(--brand-2);color:#fff;padding:6px 10px;border-radius:9999px;font-weight:600;font-size:13px}
+    .hero h1{font-size:44px;line-height:1.1;margin:14px 0 10px;color:var(--gray-dark);font-weight:700}
+    .hero p{color:var(--muted);font-size:18px;font-weight:400}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .btn{border:0;border-radius:14px;padding:14px 18px;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    .btn-primary{background:var(--brand);color:#fff}
+    section{padding:72px 20px;background:linear-gradient(180deg,#ffffff,var(--gray-light))}
+    .section-title{font-size:30px;margin:0 0 8px;color:var(--brand-2);font-weight:700}
+    .section-sub{color:var(--muted);margin:0 0 26px;font-weight:400}
+    .grid{display:grid;gap:18px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    @media (max-width: 1024px){.grid-3{grid-template-columns:1fr 1fr}}
+    @media (max-width: 560px){.grid-3{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg,#ffffff,#f0fff4);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin:10px 0 6px;color:var(--brand-2);font-weight:600}
+    .card p{color:var(--muted);margin:0;font-weight:400}
+    /* Turnos */
+    .form{display:grid;gap:14px;background:#fff;border:1px solid #e9ecef;border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+    .form .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+    .form label{font-weight:600;color:var(--brand-2);font-size:14px}
+    .form input[type="text"], .form input[type="date"], .form select{width:100%;padding:12px 12px;border:1px solid #dfe3e6;border-radius:10px;font-size:15px;outline:none}
+    .form input:focus, .form select:focus{border-color:var(--brand)}
+    .form .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+    .btn-outline{background:#fff;color:var(--brand-2);border:1px solid var(--brand-2)}
+    .prepagas-logos {display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:20px}
+    .prepagas-logos img {height:60px;object-fit:contain}
+    footer{background:linear-gradient(135deg,var(--brand-2),var(--gray-dark));color:#fff;padding:28px 20px;margin-top:44px}
+    footer a{color:#fff}
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#inicio">
+        <img src="img/logo.png" alt="Logo Centro Médico" />
+      </a>
+      <ul>
+        <li class="dropdown">
+          <button class="navlink">Pacientes <span class="caret">▾</span></button>
+          <div class="dropdown-menu">
+            <a href="#turnos">Sacar turno</a>
+            <a href="#prepagas">Obras sociales / Prepagas</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <button class="navlink">Profesionales <span class="caret">▾</span></button>
+          <div class="dropdown-menu">
+            <a href="#equipo">Nuestro equipo</a>
+            <a href="#busqueda">Buscar profesional</a>
+          </div>
+        </li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#turnos" class="btn-turnos">Solicitud de Turnos</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="inicio" class="container hero">
+    <div>
+      <span class="badge">CLINICA INTEGRAL </span>
+      <h1>Donde tu salud importa.</h1>
+      <p>Solicitá turnos online y conocé a nuestros profesionales.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#turnos">Sacar turno</a>
+      </div>
+    </div>
+  </main>
+
+  <section id="equipo">
+    <div class="container">
+      <h2 class="section-title">Nuestro equipo</h2>
+      <div id="equipo-lista" class="grid grid-3">
+        <article class="card"><h3>Dra. Mónica Gallo</h3><p>Alergia e Inmunología • MP 2345</p></article>
+        <article class="card"><h3>Dr. Juan Pérez</h3><p>Anatomía Patológica • MP 3456</p></article>
+        <article class="card"><h3>Dr. Carlos Santucho</h3><p>Anestesiología • MP 4567</p></article>
+        <article class="card"><h3>Dra. Ana Balestrini</h3><p>Cardiología • MP 5678</p></article>
+        <article class="card"><h3>Dr. Eduardo López</h3><p>Cirugía General • MP 6789</p></article>
+        <article class="card"><h3>Dra. Erica Lopetegui</h3><p>Dermatología • MP 7890</p></article>
+        <article class="card"><h3>Lic. Gabriela Bustos</h3><p>Nutrición • MP 2312</p></article>
+        <article class="card"><h3>Dr. Gómez Adrián</h3><p>Gastroenterología • MP 8901</p></article>
+        <article class="card"><h3>Dr. Gustavo Pancieri</h3><p>Ginecología y Obstetricia • MP 9012</p></article>
+        <article class="card"><h3>Dr. Javier Torres</h3><p>Medicina de Familia • MP 0123</p></article>
+        <article class="card"><h3>Dr. Sergio Farías</h3><p>Nefrología • MP 1234</p></article>
+        <article class="card"><h3>Dra. Anita Rossi</h3><p>Neumología • MP 2345</p></article>
+        <article class="card"><h3>Dr. Gonzalo Ortiz</h3><p>Oftalmología • MP 3456</p></article>
+        <article class="card"><h3>Dra. Mónica Andrade</h3><p>Oncología Médica • MP 4567</p></article>
+        <article class="card"><h3>Dr. Carlos Briz</h3><p>Oncología Médica • MP 5678</p></article>
+        <article class="card"><h3>Dra. Carina Elisa Carballo</h3><p>Otorrinolaringología • MP 6789</p></article>
+        <article class="card"><h3>Dra. Julieta Ayelén Guzmán</h3><p>Pediatría • MP 7890</p></article>
+        <article class="card"><h3>Dr. René Reinoso</h3><p>Psiquiatría • MP 8901</p></article>
+        <article class="card"><h3>Dr. Ariel Alberto Rodríguez</h3><p>Traumatología y Cirugía Ortopédica • MP 9012</p></article>
+        <article class="card"><h3>Dr. Timoteo Guzmán</h3><p>Urología • MP 0123</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="busqueda">
+    <div class="container">
+      <h2 class="section-title">Buscar profesional</h2>
+      <div class="card">
+        <input id="q" style="width:100%;padding:10px" placeholder="Ej.: cardiología, Ana Pérez"/>
+        <div id="resultados" style="margin-top:12px;display:grid;gap:10px"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="turnos">
+    <div class="container">
+      <h2 class="section-title">Solicitud de Turnos</h2>
+      <form id="turno-form" class="form">
+        <div class="row">
+          <div>
+            <label for="medico">Profesional</label>
+            <select id="medico" required>
+              <option value="" disabled selected>Seleccionar médico…</option>
+            </select>
+          </div>
+          <div>
+            <label for="dni">DNI del paciente</label>
+            <input id="dni" type="text" minlength="7" maxlength="10" required />
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="fecha">Fecha</label>
+            <input id="fecha" type="date" required />
+          </div>
+          <div>
+            <label for="hora">Horario</label>
+            <select id="hora" required>
+              <option value="" disabled selected>Elegí primero una fecha…</option>
+            </select>
+          </div>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Confirmar turno</button>
+          <a id="btn-wa" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="prepagas">
+    <div class="container">
+      <h2 class="section-title">Obras sociales y prepagas</h2>
+      <div class="prepagas-logos">
+        <img src="img/prepagas/osde.png" alt="OSDE">
+        <img src="img/prepagas/swiss.png" alt="Swiss Medical">
+        <img src="img/prepagas/galeno.png" alt="Galeno">
+        <img src="img/prepagas/apross.png" alt="Apross">
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <h2 class="section-title">Contacto</h2>
+      <p>Av. Siempre Viva 123, Córdoba • Tel: 351 123‑4567 • WhatsApp: +54 9 351 000 0000</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      © <span id="year"></span> Centro Médico IDW — Todos los derechos reservados
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const q = document.getElementById('q');
+    const res = document.getElementById('resultados');
+    const profesionales = Array.from(document.querySelectorAll('#equipo .card')).map(c=>{
+      const h3 = c.querySelector('h3').textContent;
+      const p = c.querySelector('p').textContent;
+      return {nombre:h3, esp:p};
+    });
+    const selMedico = document.getElementById('medico');
+    profesionales.forEach(p=>{
+      const opt = document.createElement('option');
+      opt.value = p.nombre;
+      opt.textContent = `${p.nombre} — ${p.esp}`;
+      selMedico.appendChild(opt);
+    });
+    q.addEventListener('input', ()=>{
+      const t = q.value.toLowerCase();
+      res.innerHTML='';
+      profesionales.filter(p=> p.nombre.toLowerCase().includes(t) || p.esp.toLowerCase().includes(t)).forEach(p=>{
+        const div = document.createElement('div');
+        div.className='card';
+        div.innerHTML = `<strong>${p.nombre}</strong><br/><span>${p.esp}</span>`;
+        res.appendChild(div);
+      });
+    });
+    const inputFecha = document.getElementById('fecha');
+    const selHora = document.getElementById('hora');
+    const today = new Date();
+    inputFecha.min = today.toISOString().split('T')[0];
+    inputFecha.addEventListener('change', ()=>{
+      selHora.innerHTML = '<option disabled selected>Seleccioná un horario…</option>';
+      for(let h=9;h<12;h++){ selHora.innerHTML+=`<option>${h}:00</option><option>${h}:30</option>`; }
+      for(let h=16;h<20;h++){ selHora.innerHTML+=`<option>${h}:00</option><option>${h}:30</option>`; }
+    });
+    document.getElementById('turno-form').addEventListener('submit', e=>{
+      e.preventDefault();
+      alert('Turno reservado con éxito');
+    });
+    document.getElementById('btn-wa').addEventListener('click', ()=>{
+      const medico = selMedico.value;
+      const dni = document.getElementById('dni').value;
+      const fecha = inputFecha.value;
+      const hora = selHora.value;
+      const msg = `Hola, quiero turno:%0A• Médico: ${medico}%0A• DNI: ${dni}%0A• Fecha: ${fecha}%0A• Hora: ${hora}`;
+      window.open(`https://wa.me/5493510000000?text=${msg}`,'_blank');
+    });
+  </script>
+</body>
+</html>
